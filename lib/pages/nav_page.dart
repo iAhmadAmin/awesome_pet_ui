@@ -2,7 +2,7 @@ import 'package:awesome_pet/constants.dart';
 import 'package:awesome_pet/pages/home.dart';
 import 'package:awesome_pet/size_config.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 class NavPage extends StatefulWidget {
   @override
@@ -14,10 +14,9 @@ class _NavPageState extends State<NavPage> {
 
   final List<Widget> _screens = [
     HomePage(),
-    Scaffold(),
-    Scaffold(),
-    Scaffold(),
-    Scaffold(),
+    HomePage(),
+    HomePage(),
+    HomePage(),
   ];
 
   @override
@@ -63,7 +62,7 @@ class _NavPageState extends State<NavPage> {
           ),
           _buildBottomNavBtn(
             isSelected: selectedTab == 2 ? true : false,
-            icon: FontAwesomeIcons.heart,
+            icon: FlutterIcons.heart_ant,
             onTap: () {
               setState(() {
                 selectedTab = 2;

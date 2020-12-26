@@ -14,3 +14,6 @@ const catDes3 =
     "Dexter is a baby persion cat. She is a very like tuna. Dexter is also very cute cat.";
 const catDes4 =
     "Kitty is a family friendly cat. She likes to paly with us and other cats too.";
+
+const loremIpsum =
+    "Lorem ipsum dolor sit amet, consec veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ";

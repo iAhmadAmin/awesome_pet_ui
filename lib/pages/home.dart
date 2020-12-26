@@ -2,10 +2,11 @@ import 'package:awesome_pet/assets.dart';
 import 'package:awesome_pet/constants.dart';
 import 'package:awesome_pet/models/newpet.dart';
 import 'package:awesome_pet/models/petselection.dart';
+import 'package:awesome_pet/pages/pet_detail_page.dart';
 import 'package:awesome_pet/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -77,6 +78,7 @@ class HomePage extends StatelessWidget {
 
   _buildPetSelection() {
     return Container(
+      margin: EdgeInsets.only(top: 10.0),
       height: 80.0,
       width: SizeConfig.screenWidth,
       child: ListView.builder(
@@ -91,7 +93,10 @@ class HomePage extends StatelessWidget {
 
   _petTile({PetSelection pet}) {
     return Container(
-      margin: EdgeInsets.only(left: 10.0),
+      margin: EdgeInsets.only(
+        left: 10.0,
+      ),
+
       // height: 60.0,
       width: SizeConfig.screenWidth * 0.4,
       child: Stack(
@@ -157,8 +162,8 @@ class HomePage extends StatelessWidget {
                     fontWeight: FontWeight.w600),
               ),
               Icon(
-                FontAwesomeIcons.search,
-                size: 30.0,
+                FlutterIcons.search1_ant,
+                size: 35.0,
                 color: primaryColor,
               ),
             ],
@@ -177,7 +182,7 @@ class HomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Icon(
-            FontAwesomeIcons.bars,
+            FlutterIcons.menu_ent,
             color: choclateColor,
           ),
           Container(
@@ -205,77 +210,87 @@ class PetTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0),
-      padding: EdgeInsets.all(10.0),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16.0),
-      ),
-      height: SizeConfig.screenWidth * 0.55,
-      width: SizeConfig.screenWidth * 0.40,
-      child: Column(
-        children: [
-          Expanded(
-              child: Container(
-            child: Stack(
-              children: [
-                Positioned(
-                  top: 1.0,
-                  left: 1.0,
-                  child: Container(
-                    height: 40.0,
-                    width: 40.0,
-                    decoration: BoxDecoration(boxShadow: [
-                      BoxShadow(
-                          color: Colors.black12,
-                          offset: Offset(1, 1),
-                          blurRadius: 1,
-                          spreadRadius: 1)
-                    ], color: Colors.white, shape: BoxShape.circle),
-                    child: Icon(FontAwesomeIcons.heart,
-                        color: pet.isFavorite ? Colors.red : greyColor),
-                  ),
-                ),
-                Positioned(
-                    bottom: 0.0,
-                    child: Image.asset(
-                      pet.imgPath,
-                      height: 130,
-                      fit: BoxFit.scaleDown,
-                    )),
-              ],
-            ),
-          )),
-          SizedBox(height: 10.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return PetDetailPage(pet: pet);
+        }));
+      },
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0),
+        padding: EdgeInsets.all(10.0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16.0),
+        ),
+        height: SizeConfig.screenWidth * 0.60,
+        width: SizeConfig.screenWidth * 0.40,
+        child: Column(
+          children: [
+            Expanded(
+                child: Container(
+              child: Stack(
                 children: [
-                  Text(
-                    pet.petName,
-                    style: TextStyle(
-                        color: choclateColor,
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.w600),
+                  Positioned(
+                    top: 1.0,
+                    right: 1.0,
+                    child: Container(
+                      height: 40.0,
+                      width: 40.0,
+                      decoration: BoxDecoration(boxShadow: [
+                        BoxShadow(
+                            color: Colors.black.withOpacity(0.01),
+                            offset: Offset(1, 1),
+                            blurRadius: 2,
+                            spreadRadius: 4)
+                      ], color: Colors.white, shape: BoxShape.circle),
+                      child: Icon(FlutterIcons.heart_fou,
+                          color: pet.isFavorite ? Colors.red : greyColor),
+                    ),
                   ),
-                  Text(
-                    pet.petType,
-                    style: TextStyle(
-                        color: choclateColor,
-                        fontSize: 12.0,
-                        fontWeight: FontWeight.w400),
-                  ),
+                  Positioned(
+                      bottom: 0.0,
+                      child: Image.asset(
+                        pet.imgPath,
+                        height: 120,
+                        fit: BoxFit.scaleDown,
+                      )),
                 ],
               ),
-              Icon(FontAwesomeIcons.cat,
-                  color:
-                      pet.gender == Gender.male ? primaryColor : Colors.pink),
-            ],
-          ),
-        ],
+            )),
+            SizedBox(height: 10.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      pet.petName,
+                      style: TextStyle(
+                          color: choclateColor,
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w600),
+                    ),
+                    Text(
+                      pet.petType,
+                      style: TextStyle(
+                          color: choclateColor,
+                          fontSize: 12.0,
+                          fontWeight: FontWeight.w400),
+                    ),
+                  ],
+                ),
+                Icon(
+                    pet.gender == Gender.male
+                        ? FlutterIcons.male_symbol_fou
+                        : FlutterIcons.female_symbol_fou,
+                    color:
+                        pet.gender == Gender.male ? primaryColor : Colors.pink),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
