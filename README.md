@@ -2,6 +2,14 @@
 
 A new Flutter project.
 
+UI/UX Credit: https://www.instagram.com/p/CJJT2puAyNK/?utm_source=ig_web_copy_link
+
+[
+![WhatsApp Image 2020-12-26 at 11 02 31 PM (1)](https://user-images.githubusercontent.com/48145486/103156864-01447c80-47cf-11eb-9f26-729b28218545.jpeg)
+](url)
+
+![WhatsApp Image 2020-12-26 at 11 02 31 PM](https://user-images.githubusercontent.com/48145486/103156873-1faa7800-47cf-11eb-9fac-4be39483468e.jpeg)
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
