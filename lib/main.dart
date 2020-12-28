@@ -1,7 +1,7 @@
-import 'package:awesome_pet/constants.dart';
 import 'package:awesome_pet/pages/home.dart';
-import 'package:awesome_pet/pages/nav_page.dart';
+import 'package:awesome_pet/themes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,13 +10,11 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          fontFamily: "Poppins",
-          primaryColor: greyColor,
-          scaffoldBackgroundColor: greyColor),
-      home: NavPage(),
+      theme: Themes.light,
+      darkTheme: Themes.dark,
+      home: HomePage(),
     );
   }
 }

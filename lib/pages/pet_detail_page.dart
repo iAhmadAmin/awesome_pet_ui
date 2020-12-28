@@ -2,9 +2,10 @@ import 'package:awesome_pet/assets.dart';
 import 'package:awesome_pet/constants.dart';
 import 'package:awesome_pet/models/newpet.dart';
 import 'package:awesome_pet/size_config.dart';
+import 'package:awesome_pet/themes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:get/get.dart';
 
 class PetDetailPage extends StatelessWidget {
   final Pet pet;
@@ -13,10 +14,11 @@ class PetDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: context.theme.backgroundColor,
       body: Container(
         height: SizeConfig.screenHeight,
         width: SizeConfig.screenWidth,
-        color: greyColor,
+        color: context.theme.backgroundColor,
         child: Stack(
           children: [
             _buildPetPicPart(context),
@@ -36,9 +38,9 @@ class PetDetailPage extends StatelessWidget {
         height: SizeConfig.screenHeight * 0.12,
         width: SizeConfig.screenWidth,
         padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-        margin: EdgeInsets.fromLTRB(8, 0, 8, 8),
+        //margin: EdgeInsets.fromLTRB(8, 0, 8, 8),
         decoration: BoxDecoration(
-            color: Colors.white,
+            color: Get.isDarkMode ? liteGreyColor : Colors.white,
             boxShadow: [
               BoxShadow(
                 color: Colors.black12,
@@ -68,17 +70,11 @@ class PetDetailPage extends StatelessWidget {
             children: [
               Text(
                 "Nannie Barker",
-                style: TextStyle(
-                    color: choclateColor,
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w500),
+                style: titleTextStyle,
               ),
               Text(
                 "Owner",
-                style: TextStyle(
-                    color: choclateColor,
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.w400),
+                style: body2TextStyle,
               ),
             ],
           ),
@@ -104,9 +100,9 @@ class PetDetailPage extends StatelessWidget {
         height: SizeConfig.screenHeight * 0.48,
         width: SizeConfig.screenWidth,
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0),
-        margin: EdgeInsets.fromLTRB(8, 0, 8, 8),
+        //  margin: EdgeInsets.fromLTRB(8, 0, 8, 8),
         decoration: BoxDecoration(
-            color: greyColor,
+            color: Get.isDarkMode ? darkGreyColor : greyColor,
             boxShadow: [
               BoxShadow(
                 color: Colors.black12,
@@ -135,20 +131,14 @@ class PetDetailPage extends StatelessWidget {
               children: [
                 Text(
                   "Pet Story",
-                  style: TextStyle(
-                      color: choclateColor,
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.w600),
+                  style: titleTextStyle,
                 ),
                 SizedBox(
                   height: 6.0,
                 ),
                 Text(
                   loremIpsum,
-                  style: TextStyle(
-                      color: choclateColor,
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.w400),
+                  style: body2TextStyle,
                 ),
               ],
             ),
@@ -163,7 +153,8 @@ class PetDetailPage extends StatelessWidget {
       height: SizeConfig.screenWidth * 0.15,
       width: SizeConfig.screenWidth * 0.27,
       decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(4.0)),
+          color: Get.isDarkMode ? liteGreyColor : Colors.white,
+          borderRadius: BorderRadius.circular(4.0)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -177,10 +168,7 @@ class PetDetailPage extends StatelessWidget {
           ),
           Text(
             value,
-            style: TextStyle(
-                color: choclateColor,
-                fontSize: 18.0,
-                fontWeight: FontWeight.w600),
+            style: titleTextStyle,
           ),
         ],
       ),
@@ -195,7 +183,7 @@ class PetDetailPage extends StatelessWidget {
         width: SizeConfig.screenWidth,
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 24.0),
         decoration: BoxDecoration(
-            color: Colors.white,
+            color: Get.isDarkMode ? liteGreyColor : Colors.white,
             boxShadow: [
               BoxShadow(
                 color: Colors.black12,
@@ -214,19 +202,16 @@ class PetDetailPage extends StatelessWidget {
                   children: [
                     Text(
                       pet.petName,
-                      style: TextStyle(
-                          color: choclateColor,
-                          fontSize: 24.0,
-                          fontWeight: FontWeight.w600),
+                      style: titleTextStyle,
                     ),
                     Text(
                       pet.petType,
-                      style: TextStyle(
-                          color: choclateColor,
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.w600),
+                      style: body2TextStyle,
                     ),
                   ],
+                ),
+                SizedBox(
+                  height: getProportionateScreenHeight(6),
                 ),
                 Icon(
                     pet.gender == Gender.male
@@ -242,10 +227,7 @@ class PetDetailPage extends StatelessWidget {
                 Icon(Icons.location_on, color: primaryColor),
                 Text(
                   "California, Walk Suite 516 (2.5 km)",
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 12.0,
-                  ),
+                  style: body2TextStyle,
                 ),
               ],
             ),
@@ -262,15 +244,17 @@ class PetDetailPage extends StatelessWidget {
       child: Stack(
         children: [
           Positioned(
-            left: 16.0,
-            top: 32.0,
+            left: getProportionateScreenWidth(16.0),
+            top: getProportionateScreenHeight(32.0),
             child: IconButton(
               icon: Icon(
                 Icons.arrow_back,
-                color: choclateColor,
+                color: Get.isDarkMode ? Colors.white : choclateColor,
               ),
               onPressed: () {
-                Navigator.pop(context);
+                Get.back();
+
+                print("pressed");
               },
             ),
           ),

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 const Color primaryColor = Color(0xFF5C00F1);
 const Color choclateColor = Color(0xFF1F160F);
 const Color greyColor = Color(0xFFF2F3F8);
+const Color darkGreyColor = Color(0xFF121212);
+Color liteGreyColor = Colors.grey[800];
 
 const petStory =
     "Manie Coon cats are known for their intell ignemce and playfulness, as well as their size. One of the largest breeds of domestic cats, they are lovingly referreds";

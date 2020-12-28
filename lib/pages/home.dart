@@ -4,15 +4,18 @@ import 'package:awesome_pet/models/newpet.dart';
 import 'package:awesome_pet/models/petselection.dart';
 import 'package:awesome_pet/pages/pet_detail_page.dart';
 import 'package:awesome_pet/size_config.dart';
+import 'package:awesome_pet/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
+      backgroundColor: context.theme.backgroundColor,
       body: SafeArea(
         child: Column(
           children: [
@@ -41,11 +44,7 @@ class HomePage extends StatelessWidget {
               children: [
                 Text(
                   "Newset Pet",
-                  style: TextStyle(
-                      color: choclateColor,
-                      fontSize: 24.0,
-                      letterSpacing: 1.0,
-                      fontWeight: FontWeight.w400),
+                  style: subHeadingTextStyle,
                 ),
                 Icon(
                   Icons.more_horiz,
@@ -104,12 +103,15 @@ class HomePage extends StatelessWidget {
           Positioned(
             bottom: 0,
             child: Container(
-              height: 60,
-              width: SizeConfig.screenWidth * 0.4,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  color: pet.isSelected ? primaryColor : Colors.white),
-            ),
+                height: 60,
+                width: SizeConfig.screenWidth * 0.4,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    color: pet.isSelected
+                        ? primaryColor
+                        : Get.isDarkMode
+                            ? liteGreyColor
+                            : Colors.white)),
           ),
           Positioned(
             left: 0.0,
@@ -124,10 +126,9 @@ class HomePage extends StatelessWidget {
             right: 16.0,
             child: Text(
               pet.petName,
-              style: TextStyle(
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.w600,
-                  color: pet.isSelected ? Colors.white : choclateColor),
+              style: pet.isSelected
+                  ? titleTextStyle.copyWith(color: Colors.white)
+                  : titleTextStyle,
             ),
           ),
         ],
@@ -138,28 +139,18 @@ class HomePage extends StatelessWidget {
   _buildSearchBar() {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20.0),
-      height: 90.0,
+      height: 95.0,
       width: SizeConfig.screenWidth,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Find Your",
-            style: TextStyle(
-                color: choclateColor,
-                fontSize: 24.0,
-                fontWeight: FontWeight.w300),
-          ),
+          Text("Find Your", style: subHeadingTextStyle),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 "Awesome Pet",
-                style: TextStyle(
-                    color: choclateColor,
-                    fontSize: 32.0,
-                    letterSpacing: 1.0,
-                    fontWeight: FontWeight.w600),
+                style: headingTextStyle,
               ),
               Icon(
                 FlutterIcons.search1_ant,
@@ -181,9 +172,17 @@ class HomePage extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Icon(
-            FlutterIcons.menu_ent,
-            color: choclateColor,
+          IconButton(
+            onPressed: () {
+              if (Get.isDarkMode)
+                Get.changeThemeMode(ThemeMode.light);
+              else
+                Get.changeThemeMode(ThemeMode.dark);
+            },
+            icon: Icon(
+              Get.isDarkMode ? FlutterIcons.sun_fea : FlutterIcons.moon_fea,
+              color: Get.isDarkMode ? Colors.white : choclateColor,
+            ),
           ),
           Container(
             height: 40.0,
@@ -212,15 +211,13 @@ class PetTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return PetDetailPage(pet: pet);
-        }));
+        Get.to(PetDetailPage(pet: pet));
       },
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0),
         padding: EdgeInsets.all(10.0),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Get.isDarkMode ? liteGreyColor : Colors.white,
           borderRadius: BorderRadius.circular(16.0),
         ),
         height: SizeConfig.screenWidth * 0.60,
@@ -237,13 +234,19 @@ class PetTile extends StatelessWidget {
                     child: Container(
                       height: 40.0,
                       width: 40.0,
-                      decoration: BoxDecoration(boxShadow: [
-                        BoxShadow(
-                            color: Colors.black.withOpacity(0.01),
-                            offset: Offset(1, 1),
-                            blurRadius: 2,
-                            spreadRadius: 4)
-                      ], color: Colors.white, shape: BoxShape.circle),
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                              color: Get.isDarkMode
+                                  ? Colors.white.withOpacity(0.01)
+                                  : Colors.black.withOpacity(0.01),
+                              offset: Offset(1, 1),
+                              blurRadius: 2,
+                              spreadRadius: 4)
+                        ],
+                        color: Get.isDarkMode ? liteGreyColor : Colors.white,
+                        shape: BoxShape.circle,
+                      ),
                       child: Icon(FlutterIcons.heart_fou,
                           color: pet.isFavorite ? Colors.red : greyColor),
                     ),
@@ -267,17 +270,11 @@ class PetTile extends StatelessWidget {
                   children: [
                     Text(
                       pet.petName,
-                      style: TextStyle(
-                          color: choclateColor,
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.w600),
+                      style: titleTextStyle,
                     ),
                     Text(
                       pet.petType,
-                      style: TextStyle(
-                          color: choclateColor,
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.w400),
+                      style: body2TextStyle,
                     ),
                   ],
                 ),
