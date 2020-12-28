@@ -1,14 +1,12 @@
 # awesome_pet
-
+# added LITE and DARK mode using Get Package.
 A new Flutter project.
 
 UI/UX Credit: https://www.instagram.com/p/CJJT2puAyNK/?utm_source=ig_web_copy_link
 
-[
-![WhatsApp Image 2020-12-26 at 11 02 31 PM (1)](https://user-images.githubusercontent.com/48145486/103156864-01447c80-47cf-11eb-9f26-729b28218545.jpeg)
-](url)
+![InShot_20201228_225732407](https://user-images.githubusercontent.com/48145486/103234372-5617fc80-4961-11eb-9ed3-84a37a0f8254.jpg)
+![InShot_20201228_230450304](https://user-images.githubusercontent.com/48145486/103234390-65974580-4961-11eb-9b20-e4f0ec8a9113.jpg)
 
-![WhatsApp Image 2020-12-26 at 11 02 31 PM](https://user-images.githubusercontent.com/48145486/103156873-1faa7800-47cf-11eb-9fac-4be39483468e.jpeg)
 
 ## Getting Started
 
