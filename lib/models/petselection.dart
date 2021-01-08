@@ -5,7 +5,7 @@ class PetSelection {
   final String imgPath;
   final bool isSelected;
 
-  PetSelection({this.imgPath, this.isSelected, this.petName});
+  PetSelection({this.petName, this.imgPath, this.isSelected});
 }
 
 List<PetSelection> petSelectionList = [
@@ -23,5 +23,5 @@ List<PetSelection> petSelectionList = [
     petName: "Rabbits",
     imgPath: Asset.rabbit,
     isSelected: false,
-  ),
+  )
 ];

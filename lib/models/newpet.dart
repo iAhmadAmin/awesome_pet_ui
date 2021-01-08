@@ -27,7 +27,7 @@ class Pet {
 
 List<Pet> petList = [
   Pet(
-    petName: "Oliver",
+    petName: "Oliver,",
     gender: Gender.male,
     age: 1,
     imgPath: Asset.cat1,
@@ -36,7 +36,7 @@ List<Pet> petList = [
     petStory: catDes1,
   ),
   Pet(
-    petName: "Oscar",
+    petName: "Oscar,",
     gender: Gender.male,
     age: 2,
     imgPath: Asset.cat2,
@@ -45,7 +45,7 @@ List<Pet> petList = [
     petStory: catDes2,
   ),
   Pet(
-    petName: "Dexter",
+    petName: "Dextoer",
     gender: Gender.female,
     age: 1,
     imgPath: Asset.cat3,
@@ -63,25 +63,7 @@ List<Pet> petList = [
     petStory: catDes4,
   ),
   Pet(
-    petName: "Oliver",
-    gender: Gender.male,
-    age: 1,
-    imgPath: Asset.cat5,
-    isFavorite: true,
-    petType: "Munchkin",
-    petStory: catDes1,
-  ),
-  Pet(
-    petName: "Oliver",
-    gender: Gender.male,
-    age: 1,
-    imgPath: Asset.cat6,
-    isFavorite: true,
-    petType: "Munchkin",
-    petStory: catDes1,
-  ),
-  Pet(
-    petName: "Oliver",
+    petName: "Oliver,",
     gender: Gender.male,
     age: 1,
     imgPath: Asset.cat1,
@@ -89,4 +71,31 @@ List<Pet> petList = [
     petType: "Munchkin",
     petStory: catDes1,
   ),
+  Pet(
+    petName: "Oliver,",
+    gender: Gender.male,
+    age: 1,
+    imgPath: Asset.cat1,
+    isFavorite: true,
+    petType: "Munchkin",
+    petStory: catDes1,
+  ),
+  Pet(
+    petName: "Oliver,",
+    gender: Gender.male,
+    age: 1,
+    imgPath: Asset.cat1,
+    isFavorite: true,
+    petType: "Munchkin",
+    petStory: catDes1,
+  ),
+  Pet(
+    petName: "Oliver,",
+    gender: Gender.male,
+    age: 1,
+    imgPath: Asset.cat1,
+    isFavorite: true,
+    petType: "Munchkin",
+    petStory: catDes1,
+  )
 ];
